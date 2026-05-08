@@ -17,7 +17,9 @@ from openmixup.utils import get_root_logger
 from ..utils import (ShiftWindowMSA, to_2tuple, resize_pos_embed,
                      resize_relative_position_bias_table,
                      grad_batch_shuffle_ddp, grad_batch_unshuffle_ddp)  # for mixup
+from ..builder import build_from_cfg
 from ..builder import BACKBONES
+from ..builder import MODELS
 from .base_backbone import BaseBackbone
 
 
@@ -366,8 +368,11 @@ class SwinTransformer(BaseBackbone):
                  norm_cfg=dict(type='LN'),
                  stage_cfgs=dict(),
                  patch_cfg=dict(),
-                 init_cfg=None):
+                 init_cfg=None,
+                 preprocessing=None):
         super(SwinTransformer, self).__init__(init_cfg=init_cfg)
+
+        self.preprocessing = preprocessing
 
         if isinstance(arch, str):
             arch = arch.lower()
@@ -460,6 +465,11 @@ class SwinTransformer(BaseBackbone):
 
             self.add_module(f'norm{i}', norm_layer)
 
+        if preprocessing and preprocessing.get('blur_bool', False):
+            self.preprocessing = build_from_cfg(preprocessing, MODELS)
+        else:
+            self.preprocessing = nn.Identity()
+
     def init_weights(self, pretrained=None):
         super(SwinTransformer, self).init_weights(pretrained)
 
@@ -476,6 +486,8 @@ class SwinTransformer(BaseBackbone):
                 trunc_normal_(self.absolute_pos_embed, std=0.02)
 
     def forward(self, x):
+        x = self.preprocessing(x)
+
         x, hw_shape = self.patch_embed(x)
         if self.use_abs_pos_embed:
             x = x + resize_pos_embed(

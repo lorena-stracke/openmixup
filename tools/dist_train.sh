@@ -9,7 +9,7 @@ NODE_RANK=${NODE_RANK:-0}
 PORT=${PORT:-29500}
 MASTER_ADDR=${MASTER_ADDR:-"127.0.0.1"}
 
-WORK_DIR=$(echo ${CFG%.*} | sed -e "s/configs/work_dirs/g")/
+WORK_DIR=$(echo ${CFG%.*} | sed -e "s/configs/work_dirs_preprocessing_convnext/g")/
 
 $PYTHON -m torch.distributed.launch \
     --nnodes=$NNODES \
@@ -18,4 +18,10 @@ $PYTHON -m torch.distributed.launch \
     --nproc_per_node=$GPUS \
     --master_port=$PORT \
     tools/train.py $CFG --work_dir $WORK_DIR \
-    --seed 0 --launcher pytorch ${PY_ARGS}
+    --seed 0 --launcher pytorch ${PY_ARGS} --blur --blur-depth 5
+# $@
+
+
+#for trceecd; do
+#    sbatch dist_train.sh --preproc $PREPROC --seed $SEED
+#done

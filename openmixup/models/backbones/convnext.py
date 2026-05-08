@@ -11,10 +11,13 @@ from mmcv.cnn.bricks import build_activation_layer, build_norm_layer, DropPath
 from mmcv.cnn.utils.weight_init import constant_init, trunc_normal_init
 from mmcv.utils.parrots_wrapper import _BatchNorm
 
+from ..builder import build_from_cfg
 from ..builder import BACKBONES
+from ..builder import MODELS
 from .base_backbone import BaseBackbone
 from ..utils import (GRN, LayerNorm2d, lecun_normal_init,
                      grad_batch_shuffle_ddp, grad_batch_unshuffle_ddp)  # for mixup
+from ..blur_preprocessing import BlurPreprocessing
 
 
 class ConvNeXtBlock(nn.Module):
@@ -245,8 +248,11 @@ class ConvNeXt(BaseBackbone):
                          type='Constant', layer=['LayerNorm'], val=1.,
                          bias=0.),
                  ],
+                 preprocessing=None,
                  **kwargs):
         super().__init__(init_cfg=init_cfg)
+
+        self.preprocessing = preprocessing
 
         if isinstance(arch, str):
             assert arch in self.arch_settings, \
@@ -341,6 +347,10 @@ class ConvNeXt(BaseBackbone):
                 self.add_module(f'norm{i}', norm_layer)
 
         self._freeze_stages()
+        if preprocessing and preprocessing.get('blur_bool', False):
+            self.preprocessing = build_from_cfg(preprocessing, MODELS)
+        else:
+            self.preprocessing = nn.Identity()
 
     def init_weights(self, pretrained=None):
         super(ConvNeXt, self).init_weights(pretrained)
@@ -367,7 +377,9 @@ class ConvNeXt(BaseBackbone):
                                stage.parameters()):
                 param.requires_grad = False
     
-    def forward(self, x):
+    def forward(self, x):        
+        x = self.preprocessing(x)
+      
         outs = []
         for i, stage in enumerate(self.stages):
             x = self.downsample_layers[i](x)

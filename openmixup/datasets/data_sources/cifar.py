@@ -142,7 +142,7 @@ class CIFAR100(Cifar):
     def set_cifar(self):
         try:
             self.cifar = torchvision.datasets.CIFAR100(
-                root=self.root, train=self.split == 'train', download=False)
+                root=self.root, train=self.split == 'train', download=True)
             if self.repeat > 1:
                 self.cifar.data = np.concatenate([self.cifar.data] * self.repeat)
                 self.cifar.targets = np.concatenate([self.cifar.targets] * self.repeat)
