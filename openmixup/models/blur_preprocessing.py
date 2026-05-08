@@ -168,6 +168,7 @@ class BlurPreprocessing(nn.Module):
 
             concat_image = x
 
+            # import ipdb; ipdb.set_trace()
             for i in range(self.num_images - 1):
                 x = F.pad(x, (1, 1, 1, 1), mode="reflect")
                 x = F.conv2d(x, self.blur_kernel.to(x.device), stride=(1, 1), padding=0, groups=3)

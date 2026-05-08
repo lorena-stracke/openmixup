@@ -61,7 +61,10 @@ update_interval = 1  # total: 1 x bs100 x 1 accumulates = bs100
 # fp16
 use_fp16 = True
 fp16 = dict(type='mmcv', loss_scale='dynamic')
-optimizer_config = dict(grad_clip=None, update_interval=update_interval)
+optimizer_config = dict(
+    update_interval=update_interval,
+    grad_clip=None
+)
 
 # learning policy
 lr_config = dict(

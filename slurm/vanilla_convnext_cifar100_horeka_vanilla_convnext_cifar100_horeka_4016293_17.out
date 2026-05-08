@@ -1,0 +1,26 @@
+Started at Fri May  8 03:14:02 PM CEST 2026
+Running job: vanilla_convnext_cifar100_horeka array id: 17 using 24 cpus per node with given JID 4016397 on queue accelerated
+29528 Port Running with seed  and preprocessing grayscale
+Runtime: 11
+
+============================= JOB FEEDBACK =============================
+
+Job ID: 4016397
+Array Job ID: 4016293_17
+Cluster: hk
+User/Group: ma_sagnihot/hk-project-pai00010
+Account: hk-project-pai00070
+State: COMPLETED (exit code 0)
+Partition: accelerated
+Nodes: 1
+Cores per node: 24
+Nodelist: hkn0530
+CPU Utilized: 00:00:06
+CPU Efficiency: 0.62% of 00:16:00 core-walltime
+Job Wall-clock time: 00:00:40
+Starttime: Fri May  8 15:13:33 2026
+Endtime: Fri May  8 15:14:13 2026
+Memory Utilized: 622.93 MB
+Memory Efficiency: 0.61% of 100.00 GB (100.00 GB/node)
+Energy Consumed: 18532 Joule / 5.14777777777778 Watthours
+Average node power draw: 463.3 Watt

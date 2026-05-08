@@ -1,0 +1,52 @@
+/hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
+  warnings.warn(
+/hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/lib/python3.8/site-packages/mmcv/cnn/bricks/transformer.py:33: UserWarning: Fail to import ``MultiScaleDeformableAttention`` from ``mmcv.ops.multi_scale_deform_attn``, You should install ``mmcv-full`` if you need this module. 
+  warnings.warn('Fail to import ``MultiScaleDeformableAttention`` from '
+/hkfs/work/workspace/scratch/ma_sagnihot-projects/openmixup/openmixup/apis/train.py:23: UserWarning: DeprecationWarning: Nvidia Apex is not installed, using FP16OptimizerHook modified from mmcv.
+  warnings.warn('DeprecationWarning: Nvidia Apex is not installed, '
+usage: train.py [-h] [--work_dir WORK_DIR] [--resume_from RESUME_FROM]
+                [--auto_resume] [--pretrained PRETRAINED]
+                [--load_checkpoint LOAD_CHECKPOINT]
+                [--gpus GPUS | --gpu_ids GPU_IDS [GPU_IDS ...] | --gpu-id
+                GPU_ID] [--seed SEED] [--diff-seed] [--deterministic]
+                [--cfg-options CFG_OPTIONS [CFG_OPTIONS ...]]
+                [--launcher {none,pytorch,slurm,mpi}]
+                [--local_rank LOCAL_RANK] [--local-rank LOCAL_RANK]
+                [--port PORT] [--blur] [--blur-depth BLUR_DEPTH]
+                [--single-color] [--color-opponency] [--black-white]
+                [--normalize] [--channels CHANNELS]
+                [--sparsity-threshold SPARSITY_THRESHOLD]
+                [--sparsity-type {threshold,percentage}] [--change-range]
+                [--sparse-baseline] [--use-reflect-padding-for-blurring]
+                config
+train.py: error: argument --seed: expected one argument
+E0508 15:16:18.878263 23320892909376 torch/distributed/elastic/multiprocessing/api.py:833] failed (exitcode: 2) local_rank: 0 (pid: 2873549) of binary: /hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/bin/python
+Traceback (most recent call last):
+  File "/hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/lib/python3.8/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 348, in wrapper
+    return f(*args, **kwargs)
+  File "/hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/lib/python3.8/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/lib/python3.8/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 133, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/lib/python3.8/site-packages/torch/distributed/launcher/api.py", line 264, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+tools/train.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-05-08_15:16:18
+  host      : hkn0530.localdomain
+  rank      : 0 (local_rank: 0)
+  exitcode  : 2 (pid: 2873549)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

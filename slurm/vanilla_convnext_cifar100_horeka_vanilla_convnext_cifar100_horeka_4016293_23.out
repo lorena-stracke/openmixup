@@ -1,0 +1,4 @@
+Started at Fri May  8 03:20:26 PM CEST 2026
+Running job: vanilla_convnext_cifar100_horeka array id: 23 using 24 cpus per node with given JID 4016293 on queue accelerated
+29534 Port Running with seed  and preprocessing color_opponency
+Runtime: 11
