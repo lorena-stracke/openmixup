@@ -143,11 +143,20 @@ def parse_args():
         default=4,
         help='Nearest-neighbor scale for saved CIFAR corruption samples.')
     parser.add_argument(
-        '--corruption-seed',
+        '--seed',
         type=int,
         default=0,
         help='Seed for stochastic image corruptions.')
     args = parser.parse_args()
+    args.corruption_seed = args.seed
+    
+    # Set manual seed for reproducibility
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    torch.cuda.manual_seed(args.seed)
+    torch.cuda.manual_seed_all(args.seed)
+    
     if 'LOCAL_RANK' not in os.environ:
         os.environ['LOCAL_RANK'] = str(args.local_rank)
 
