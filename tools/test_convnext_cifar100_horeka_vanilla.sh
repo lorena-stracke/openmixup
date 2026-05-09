@@ -39,39 +39,39 @@ if (( $SLURM_ARRAY_TASK_ID % 4 == 0 )); then
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --eval-corruptions
 
-    SPARSITY_THRESHOLD=10.0
+    SPARSITY_THRESHOLD=0.1
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --eval-corruptions
 
-    SPARSITY_THRESHOLD=20.0
+    SPARSITY_THRESHOLD=0.2
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --eval-corruptions
 
-    SPARSITY_THRESHOLD=30.0
+    SPARSITY_THRESHOLD=0.3
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --eval-corruptions
 
-    SPARSITY_THRESHOLD=40.0
+    SPARSITY_THRESHOLD=0.4
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --eval-corruptions
 
-    SPARSITY_THRESHOLD=50.0
+    SPARSITY_THRESHOLD=0.5
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --eval-corruptions
 
-    SPARSITY_THRESHOLD=60.0
+    SPARSITY_THRESHOLD=0.6
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --eval-corruptions
 
-    SPARSITY_THRESHOLD=70.0
+    SPARSITY_THRESHOLD=0.7
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --eval-corruptions
 
-    SPARSITY_THRESHOLD=80.0
+    SPARSITY_THRESHOLD=0.8
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --eval-corruptions
 
-    SPARSITY_THRESHOLD=90.0
+    SPARSITY_THRESHOLD=0.9
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --eval-corruptions
 
@@ -86,42 +86,42 @@ elif (( $SLURM_ARRAY_TASK_ID % 4 == 1 )); then
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --eval-corruptions
 
 
-    SPARSITY_THRESHOLD=10.0
+    SPARSITY_THRESHOLD=0.1
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --eval-corruptions
 
-    SPARSITY_THRESHOLD=20.0
-    SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
-    CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --eval-corruptions
-
-
-    SPARSITY_THRESHOLD=30.0
-    SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
-    CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --eval-corruptions
-
-    SPARSITY_THRESHOLD=40.0
-    SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
-    CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --eval-corruptions
-
-    SPARSITY_THRESHOLD=50.0
+    SPARSITY_THRESHOLD=0.2
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --eval-corruptions
 
 
-    SPARSITY_THRESHOLD=60.0
+    SPARSITY_THRESHOLD=0.3
+    SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
+    CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --eval-corruptions
+
+    SPARSITY_THRESHOLD=0.4
+    SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
+    CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --eval-corruptions
+
+    SPARSITY_THRESHOLD=0.5
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --eval-corruptions
 
 
-    SPARSITY_THRESHOLD=70.0
+    SPARSITY_THRESHOLD=0.6
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --eval-corruptions
 
-    SPARSITY_THRESHOLD=80.0
+
+    SPARSITY_THRESHOLD=0.7
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --eval-corruptions
 
-    SPARSITY_THRESHOLD=90.0
+    SPARSITY_THRESHOLD=0.8
+    SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
+    CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --eval-corruptions
+
+    SPARSITY_THRESHOLD=0.9
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --eval-corruptions
 
@@ -136,41 +136,41 @@ elif (( $SLURM_ARRAY_TASK_ID % 4 == 2 )); then
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --single-color --eval-corruptions
 
 
-    SPARSITY_THRESHOLD=10.0
+    SPARSITY_THRESHOLD=0.1
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --single-color --eval-corruptions
 
 
-    SPARSITY_THRESHOLD=20.0
+    SPARSITY_THRESHOLD=0.2
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --single-color --eval-corruptions
 
 
-    SPARSITY_THRESHOLD=30.0
+    SPARSITY_THRESHOLD=0.3
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --single-color --eval-corruptions
 
-    SPARSITY_THRESHOLD=40.0
+    SPARSITY_THRESHOLD=0.4
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --single-color --eval-corruptions
 
-    SPARSITY_THRESHOLD=50.0
+    SPARSITY_THRESHOLD=0.5
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --single-color --eval-corruptions
 
-    SPARSITY_THRESHOLD=60.0
+    SPARSITY_THRESHOLD=0.6
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --single-color --eval-corruptions
 
-    SPARSITY_THRESHOLD=70.0
+    SPARSITY_THRESHOLD=0.7
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --single-color --eval-corruptions
 
-    SPARSITY_THRESHOLD=80.0
+    SPARSITY_THRESHOLD=0.8
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --single-color --eval-corruptions
 
-    SPARSITY_THRESHOLD=90.0
+    SPARSITY_THRESHOLD=0.9
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --single-color --eval-corruptions
 else
@@ -182,39 +182,39 @@ else
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --color-opponency --eval-corruptions
 
-    SPARSITY_THRESHOLD=10.0
+    SPARSITY_THRESHOLD=0.1
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --color-opponency --eval-corruptions
 
-    SPARSITY_THRESHOLD=20.0
+    SPARSITY_THRESHOLD=0.2
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --color-opponency --eval-corruptions
 
-    SPARSITY_THRESHOLD=30.0
+    SPARSITY_THRESHOLD=0.3
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --color-opponency --eval-corruptions
 
-    SPARSITY_THRESHOLD=40.0
+    SPARSITY_THRESHOLD=0.4
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --color-opponency --eval-corruptions
 
-    SPARSITY_THRESHOLD=50.0
+    SPARSITY_THRESHOLD=0.5
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --color-opponency --eval-corruptions
 
-    SPARSITY_THRESHOLD=60.0
+    SPARSITY_THRESHOLD=0.6
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --color-opponency --eval-corruptions
 
-    SPARSITY_THRESHOLD=70.0
+    SPARSITY_THRESHOLD=0.7
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --color-opponency --eval-corruptions
 
-    SPARSITY_THRESHOLD=80.0
+    SPARSITY_THRESHOLD=0.8
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --color-opponency --eval-corruptions
 
-    SPARSITY_THRESHOLD=90.0
+    SPARSITY_THRESHOLD=0.9
     SAVE_DIR=${WORK_DIR}/${SPARSITY_THRESHOLD}
     CUDA_VISIBLE_DEVICES=0 python tools/train.py configs/classification/cifar100/mixups/vits/convnext_tiny/convnext_t_vanilla_bs100_ep200.py $CKPT_PATH --work_dir ${SAVE_DIR} --seed ${SEED} --launcher none --sparsity-threshold $SPARSITY_THRESHOLD --sparsity-type percentage --blur --blur-depth 5 --color-opponency --eval-corruptions
 
