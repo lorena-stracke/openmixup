@@ -2493,3 +2493,59 @@ after_run:
 2026-05-09 12:51:58,955 - openmixup - INFO - Epoch [36][100/500]	lr: 9.256e-04, eta: 2:51:04, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4716, acc: 78.9400
 2026-05-09 12:52:04,946 - openmixup - INFO - Epoch [36][150/500]	lr: 9.252e-04, eta: 2:50:56, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4577, acc: 79.7000
 2026-05-09 12:52:10,938 - openmixup - INFO - Epoch [36][200/500]	lr: 9.248e-04, eta: 2:50:49, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.5367, acc: 76.0800
+2026-05-09 12:52:16,933 - openmixup - INFO - Epoch [36][250/500]	lr: 9.243e-04, eta: 2:50:42, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.5018, acc: 77.6200
+2026-05-09 12:52:22,937 - openmixup - INFO - Epoch [36][300/500]	lr: 9.239e-04, eta: 2:50:34, time: 0.120, data_time: 0.001, memory: 5240, loss: 1.5213, acc: 76.7200
+2026-05-09 12:52:28,932 - openmixup - INFO - Epoch [36][350/500]	lr: 9.235e-04, eta: 2:50:27, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.5252, acc: 76.8400
+2026-05-09 12:52:35,066 - openmixup - INFO - Epoch [36][400/500]	lr: 9.231e-04, eta: 2:50:21, time: 0.123, data_time: 0.003, memory: 5240, loss: 1.5411, acc: 76.0600
+2026-05-09 12:52:41,061 - openmixup - INFO - Epoch [36][450/500]	lr: 9.227e-04, eta: 2:50:13, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.5596, acc: 76.0800
+2026-05-09 12:52:47,065 - openmixup - INFO - Exp name: convnext_t_vanilla_bs100_ep200.py
+2026-05-09 12:52:47,065 - openmixup - INFO - Epoch [36][500/500]	lr: 9.223e-04, eta: 2:50:06, time: 0.120, data_time: 0.001, memory: 5240, loss: 1.5459, acc: 76.4400
+2026-05-09 12:52:48,822 - openmixup - INFO - head0_top1: 69.660
+2026-05-09 12:52:48,822 - openmixup - INFO - head0_top5: 90.500
+2026-05-09 12:52:48,822 - openmixup - INFO - Exp name: convnext_t_vanilla_bs100_ep200.py
+2026-05-09 12:52:48,822 - openmixup - INFO - Epoch(val) [36][100]	head0_top1: 69.6600, head0_top5: 90.5000
+2026-05-09 12:52:57,039 - openmixup - INFO - Epoch [37][50/500]	lr: 9.218e-04, eta: 2:50:09, time: 0.164, data_time: 0.044, memory: 5240, loss: 1.4388, acc: 79.9800
+2026-05-09 12:53:03,033 - openmixup - INFO - Epoch [37][100/500]	lr: 9.214e-04, eta: 2:50:02, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4627, acc: 79.4400
+2026-05-09 12:53:09,025 - openmixup - INFO - Epoch [37][150/500]	lr: 9.210e-04, eta: 2:49:54, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4896, acc: 78.2200
+2026-05-09 12:53:15,019 - openmixup - INFO - Epoch [37][200/500]	lr: 9.206e-04, eta: 2:49:47, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4543, acc: 78.9400
+2026-05-09 12:53:21,010 - openmixup - INFO - Epoch [37][250/500]	lr: 9.201e-04, eta: 2:49:40, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.5158, acc: 77.1800
+2026-05-09 12:53:27,002 - openmixup - INFO - Epoch [37][300/500]	lr: 9.197e-04, eta: 2:49:32, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4854, acc: 78.2400
+2026-05-09 12:53:32,993 - openmixup - INFO - Epoch [37][350/500]	lr: 9.193e-04, eta: 2:49:25, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.5110, acc: 77.4200
+2026-05-09 12:53:38,985 - openmixup - INFO - Epoch [37][400/500]	lr: 9.189e-04, eta: 2:49:18, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4965, acc: 77.6000
+2026-05-09 12:53:44,979 - openmixup - INFO - Epoch [37][450/500]	lr: 9.184e-04, eta: 2:49:11, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.5146, acc: 77.3600
+2026-05-09 12:53:50,979 - openmixup - INFO - Exp name: convnext_t_vanilla_bs100_ep200.py
+2026-05-09 12:53:50,979 - openmixup - INFO - Epoch [37][500/500]	lr: 9.180e-04, eta: 2:49:03, time: 0.120, data_time: 0.001, memory: 5240, loss: 1.4992, acc: 77.5400
+2026-05-09 12:53:52,740 - openmixup - INFO - head0_top1: 70.030
+2026-05-09 12:53:52,740 - openmixup - INFO - head0_top5: 91.590
+2026-05-09 12:53:52,751 - openmixup - INFO - The previous best checkpoint /hkfs/work/workspace/scratch/ma_sagnihot-projects/openmixup/experiments/cifar100/convnext_tiny/none/vanilla_redo/seed_42/best_head0_top1_epoch_35.pth was removed
+2026-05-09 12:53:53,098 - openmixup - INFO - Now best checkpoint is saved as best_head0_top1_epoch_37.pth.
+2026-05-09 12:53:53,099 - openmixup - INFO - Best head0_top1 is 70.0300 at 37 epoch.
+2026-05-09 12:53:53,099 - openmixup - INFO - Exp name: convnext_t_vanilla_bs100_ep200.py
+2026-05-09 12:53:53,099 - openmixup - INFO - Epoch(val) [37][100]	head0_top1: 70.0300, head0_top5: 91.5900
+2026-05-09 12:54:01,312 - openmixup - INFO - Epoch [38][50/500]	lr: 9.176e-04, eta: 2:49:06, time: 0.164, data_time: 0.044, memory: 5240, loss: 1.4260, acc: 80.6800
+2026-05-09 12:54:07,309 - openmixup - INFO - Epoch [38][100/500]	lr: 9.171e-04, eta: 2:48:59, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4603, acc: 79.6400
+2026-05-09 12:54:13,303 - openmixup - INFO - Epoch [38][150/500]	lr: 9.167e-04, eta: 2:48:51, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4538, acc: 79.5800
+2026-05-09 12:54:19,296 - openmixup - INFO - Epoch [38][200/500]	lr: 9.163e-04, eta: 2:48:44, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4680, acc: 78.7800
+2026-05-09 12:54:25,287 - openmixup - INFO - Epoch [38][250/500]	lr: 9.158e-04, eta: 2:48:37, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4933, acc: 77.2600
+2026-05-09 12:54:31,282 - openmixup - INFO - Epoch [38][300/500]	lr: 9.154e-04, eta: 2:48:30, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4941, acc: 77.7000
+2026-05-09 12:54:37,277 - openmixup - INFO - Epoch [38][350/500]	lr: 9.150e-04, eta: 2:48:23, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4797, acc: 78.9200
+2026-05-09 12:54:43,271 - openmixup - INFO - Epoch [38][400/500]	lr: 9.145e-04, eta: 2:48:15, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.5094, acc: 77.2000
+2026-05-09 12:54:49,267 - openmixup - INFO - Epoch [38][450/500]	lr: 9.141e-04, eta: 2:48:08, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4829, acc: 78.1400
+2026-05-09 12:54:55,270 - openmixup - INFO - Exp name: convnext_t_vanilla_bs100_ep200.py
+2026-05-09 12:54:55,270 - openmixup - INFO - Epoch [38][500/500]	lr: 9.136e-04, eta: 2:48:01, time: 0.120, data_time: 0.001, memory: 5240, loss: 1.4839, acc: 78.1200
+2026-05-09 12:54:57,048 - openmixup - INFO - head0_top1: 71.170
+2026-05-09 12:54:57,048 - openmixup - INFO - head0_top5: 91.630
+2026-05-09 12:54:57,049 - openmixup - INFO - The previous best checkpoint /hkfs/work/workspace/scratch/ma_sagnihot-projects/openmixup/experiments/cifar100/convnext_tiny/none/vanilla_redo/seed_42/best_head0_top1_epoch_37.pth was removed
+2026-05-09 12:54:57,397 - openmixup - INFO - Now best checkpoint is saved as best_head0_top1_epoch_38.pth.
+2026-05-09 12:54:57,397 - openmixup - INFO - Best head0_top1 is 71.1700 at 38 epoch.
+2026-05-09 12:54:57,398 - openmixup - INFO - Exp name: convnext_t_vanilla_bs100_ep200.py
+2026-05-09 12:54:57,398 - openmixup - INFO - Epoch(val) [38][100]	head0_top1: 71.1700, head0_top5: 91.6300
+2026-05-09 12:55:05,617 - openmixup - INFO - Epoch [39][50/500]	lr: 9.132e-04, eta: 2:48:03, time: 0.164, data_time: 0.044, memory: 5240, loss: 1.4178, acc: 80.5800
+2026-05-09 12:55:11,615 - openmixup - INFO - Epoch [39][100/500]	lr: 9.128e-04, eta: 2:47:56, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4083, acc: 81.3000
+2026-05-09 12:55:17,606 - openmixup - INFO - Epoch [39][150/500]	lr: 9.123e-04, eta: 2:47:49, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4295, acc: 80.3000
+2026-05-09 12:55:23,596 - openmixup - INFO - Epoch [39][200/500]	lr: 9.119e-04, eta: 2:47:42, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4494, acc: 79.4200
+2026-05-09 12:55:29,586 - openmixup - INFO - Epoch [39][250/500]	lr: 9.114e-04, eta: 2:47:34, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4719, acc: 78.6000
+2026-05-09 12:55:35,576 - openmixup - INFO - Epoch [39][300/500]	lr: 9.110e-04, eta: 2:47:27, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4431, acc: 79.8800
+2026-05-09 12:55:41,567 - openmixup - INFO - Epoch [39][350/500]	lr: 9.105e-04, eta: 2:47:20, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4663, acc: 78.5600
+2026-05-09 12:55:47,559 - openmixup - INFO - Epoch [39][400/500]	lr: 9.101e-04, eta: 2:47:13, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4575, acc: 79.8800
+2026-05-09 12:55:53,551 - openmixup - INFO - Epoch [39][450/500]	lr: 9.096e-04, eta: 2:47:06, time: 0.120, data_time: 0.000, memory: 5240, loss: 1.4790, acc: 78.3000
