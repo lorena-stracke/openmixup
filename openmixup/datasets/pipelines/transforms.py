@@ -1099,6 +1099,112 @@ class ImageToTensor(object):
         return self.__class__.__name__
 
 
+def _patch_imagecorruptions_skimage_compat():
+    """Map old imagecorruptions gaussian kwargs onto newer scikit-image."""
+    try:
+        import skimage.filters
+        from skimage.filters import gaussian as skimage_gaussian
+    except ImportError:
+        return
+
+    signature = inspect.signature(skimage_gaussian)
+    if 'multichannel' in signature.parameters:
+        return
+
+    def gaussian_compat(image,
+                        sigma=1,
+                        output=None,
+                        mode='nearest',
+                        cval=0,
+                        preserve_range=False,
+                        truncate=4.0,
+                        multichannel=None,
+                        channel_axis=None,
+                        **kwargs):
+        if multichannel is not None and channel_axis is None:
+            channel_axis = -1 if multichannel else None
+
+        call_kwargs = dict(
+            sigma=sigma,
+            output=output,
+            mode=mode,
+            cval=cval,
+            preserve_range=preserve_range,
+            truncate=truncate,
+            channel_axis=channel_axis)
+        call_kwargs.update(kwargs)
+        call_kwargs = {
+            key: value
+            for key, value in call_kwargs.items()
+            if key in signature.parameters
+        }
+        return skimage_gaussian(image, **call_kwargs)
+
+    skimage.filters.gaussian = gaussian_compat
+    try:
+        import imagecorruptions.corruptions as corruption_impl
+        corruption_impl.gaussian = gaussian_compat
+    except ImportError:
+        pass
+
+
+@PIPELINES.register_module()
+class ImageCorruption(object):
+    """Apply an imagecorruptions corruption before tensor conversion.
+
+    The imagecorruptions package expects uint8 HWC numpy arrays in [0, 255].
+    Keep this transform before ToTensor/Normalize in the pipeline.
+    """
+
+    def __init__(self, corruption_name, severity=1):
+        try:
+            _patch_imagecorruptions_skimage_compat()
+            from imagecorruptions import corrupt, get_corruption_names
+            _patch_imagecorruptions_skimage_compat()
+        except ImportError as exc:
+            raise ImportError(
+                'ImageCorruption requires the imagecorruptions package. '
+                'Install it with `pip install imagecorruptions`.') from exc
+
+        valid_corruptions = set(get_corruption_names('all'))
+        if corruption_name not in valid_corruptions:
+            raise ValueError(
+                f'Unknown corruption "{corruption_name}". Expected one of '
+                f'{sorted(valid_corruptions)}.')
+        if severity not in (1, 2, 3, 4, 5):
+            raise ValueError('severity must be an integer in [1, 5].')
+
+        self.corrupt = corrupt
+        self.corruption_name = corruption_name
+        self.severity = severity
+
+    def __call__(self, img):
+        if isinstance(img, Image.Image):
+            image = np.array(img.convert('RGB'))
+        elif isinstance(img, np.ndarray):
+            image = img
+        else:
+            raise TypeError(
+                'ImageCorruption must run before tensor conversion; got '
+                f'{type(img)}.')
+
+        if image.dtype != np.uint8:
+            raise TypeError(
+                'imagecorruptions expects np.uint8 images in [0, 255]; got '
+                f'{image.dtype}. Keep ImageCorruption before Normalize.')
+
+        corrupted = self.corrupt(
+            image,
+            corruption_name=self.corruption_name,
+            severity=self.severity)
+        return Image.fromarray(corrupted.astype(np.uint8))
+
+    def __repr__(self):
+        return (f'{self.__class__.__name__}('
+                f'corruption_name={self.corruption_name}, '
+                f'severity={self.severity})')
+
+
 @PIPELINES.register_module
 class RandomErasing_numpy(object):
     """Randomly selects a rectangle region in an image and erase pixels.
