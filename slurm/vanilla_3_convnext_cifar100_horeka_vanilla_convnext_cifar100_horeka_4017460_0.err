@@ -1,0 +1,1928 @@
+/hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
+  warnings.warn(
+/hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/lib/python3.8/site-packages/mmcv/cnn/bricks/transformer.py:33: UserWarning: Fail to import ``MultiScaleDeformableAttention`` from ``mmcv.ops.multi_scale_deform_attn``, You should install ``mmcv-full`` if you need this module. 
+  warnings.warn('Fail to import ``MultiScaleDeformableAttention`` from '
+/hkfs/work/workspace/scratch/ma_sagnihot-projects/openmixup/openmixup/apis/train.py:23: UserWarning: DeprecationWarning: Nvidia Apex is not installed, using FP16OptimizerHook modified from mmcv.
+  warnings.warn('DeprecationWarning: Nvidia Apex is not installed, '
+tools/train.py:133: UserWarning: `--gpus` is deprecated because we only support single GPU mode in non-distributed training. Use `gpus=1` now.
+  warnings.warn('`--gpus` is deprecated because we only support '
+2026-05-09 12:14:09,094 - openmixup - INFO - Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.8.20 (default, Oct  3 2024, 15:24:27) [GCC 11.2.0]
+CUDA available: True
+CUDA_HOME: /software/all/devel/cuda/12.4
+NVCC: Build cuda_12.4.r12.4/compiler.34097967_0
+GPU 0: NVIDIA A100-SXM4-40GB
+GCC: gcc (GCC) 11.4.1 20231218 (Red Hat 11.4.1-4)
+PyTorch: 2.4.1+cu121
+PyTorch compiling details: PyTorch built with:
+  - GCC 9.3
+  - C++ Version: 201703
+  - Intel(R) oneAPI Math Kernel Library Version 2023.1-Product Build 20230303 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.4.2 (Git Hash 1137e04ec0b5251ca2b4400a4fd3c667ce843d67)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX512
+  - CUDA Runtime 12.1
+  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90
+  - CuDNN 90.5.1  (built against CUDA 12.6)
+    - Built with CuDNN 90.1
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=12.1, CUDNN_VERSION=9.1.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=pedantic -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=2.4.1, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, 
+
+TorchVision: 0.19.1+cu121
+OpenCV: 4.13.0
+MMCV: 1.7.2
+openmixup: 0.2.10
+------------------------------------------------------------
+
+2026-05-09 12:14:09,421 - openmixup - INFO - Distributed training: True
+2026-05-09 12:14:09,607 - openmixup - INFO - Config:
+fixmatch_augment_policies = [
+    dict(type='AutoContrast'),
+    dict(
+        type='Brightness',
+        magnitude_key='magnitude',
+        magnitude_range=(0.05, 0.95)),
+    dict(
+        type='ColorTransform',
+        magnitude_key='magnitude',
+        magnitude_range=(0.05, 0.95)),
+    dict(
+        type='Contrast',
+        magnitude_key='magnitude',
+        magnitude_range=(0.05, 0.95)),
+    dict(type='Equalize'),
+    dict(type='Identity'),
+    dict(type='Posterize', magnitude_key='bits', magnitude_range=(4, 8)),
+    dict(type='Rotate', magnitude_key='angle', magnitude_range=(0, 30)),
+    dict(
+        type='Sharpness',
+        magnitude_key='magnitude',
+        magnitude_range=(0.05, 0.95)),
+    dict(
+        type='Shear',
+        magnitude_key='magnitude',
+        magnitude_range=(0, 0.3),
+        direction='horizontal'),
+    dict(
+        type='Shear',
+        magnitude_key='magnitude',
+        magnitude_range=(0, 0.3),
+        direction='vertical'),
+    dict(type='Solarize', magnitude_key='thr', magnitude_range=(256, 0)),
+    dict(
+        type='Translate',
+        magnitude_key='magnitude',
+        magnitude_range=(0, 0.3),
+        direction='horizontal'),
+    dict(
+        type='Translate',
+        magnitude_key='magnitude',
+        magnitude_range=(0, 0.3),
+        direction='vertical')
+]
+data_source_cfg = dict(type='CIFAR100', root='data/cifar100/')
+dataset_type = 'ClassificationDataset'
+img_norm_cfg = dict(mean=[0.4914, 0.4822, 0.4465], std=[0.2023, 0.1994, 0.201])
+train_pipeline = [
+    dict(type='RandomCrop', size=32, padding=4, padding_mode='reflect'),
+    dict(type='RandomHorizontalFlip'),
+    dict(
+        type='RandAugment',
+        policies=[
+            dict(type='AutoContrast'),
+            dict(
+                type='Brightness',
+                magnitude_key='magnitude',
+                magnitude_range=(0.05, 0.95)),
+            dict(
+                type='ColorTransform',
+                magnitude_key='magnitude',
+                magnitude_range=(0.05, 0.95)),
+            dict(
+                type='Contrast',
+                magnitude_key='magnitude',
+                magnitude_range=(0.05, 0.95)),
+            dict(type='Equalize'),
+            dict(type='Identity'),
+            dict(
+                type='Posterize', magnitude_key='bits',
+                magnitude_range=(4, 8)),
+            dict(
+                type='Rotate', magnitude_key='angle', magnitude_range=(0, 30)),
+            dict(
+                type='Sharpness',
+                magnitude_key='magnitude',
+                magnitude_range=(0.05, 0.95)),
+            dict(
+                type='Shear',
+                magnitude_key='magnitude',
+                magnitude_range=(0, 0.3),
+                direction='horizontal'),
+            dict(
+                type='Shear',
+                magnitude_key='magnitude',
+                magnitude_range=(0, 0.3),
+                direction='vertical'),
+            dict(
+                type='Solarize', magnitude_key='thr',
+                magnitude_range=(256, 0)),
+            dict(
+                type='Translate',
+                magnitude_key='magnitude',
+                magnitude_range=(0, 0.3),
+                direction='horizontal'),
+            dict(
+                type='Translate',
+                magnitude_key='magnitude',
+                magnitude_range=(0, 0.3),
+                direction='vertical')
+        ],
+        num_policies=2,
+        total_level=10,
+        magnitude_level=7,
+        magnitude_std=0.5,
+        hparams=dict(pad_val=[114, 123, 125], interpolation='bicubic'))
+]
+test_pipeline = [
+    dict(type='ToTensor'),
+    dict(
+        type='Normalize',
+        mean=[0.4914, 0.4822, 0.4465],
+        std=[0.2023, 0.1994, 0.201])
+]
+prefetch = True
+data = dict(
+    imgs_per_gpu=100,
+    workers_per_gpu=4,
+    train=dict(
+        type='ClassificationDataset',
+        data_source=dict(
+            split='train', type='CIFAR100', root='data/cifar100/'),
+        pipeline=[
+            dict(
+                type='RandomCrop', size=32, padding=4, padding_mode='reflect'),
+            dict(type='RandomHorizontalFlip'),
+            dict(
+                type='RandAugment',
+                policies=[
+                    dict(type='AutoContrast'),
+                    dict(
+                        type='Brightness',
+                        magnitude_key='magnitude',
+                        magnitude_range=(0.05, 0.95)),
+                    dict(
+                        type='ColorTransform',
+                        magnitude_key='magnitude',
+                        magnitude_range=(0.05, 0.95)),
+                    dict(
+                        type='Contrast',
+                        magnitude_key='magnitude',
+                        magnitude_range=(0.05, 0.95)),
+                    dict(type='Equalize'),
+                    dict(type='Identity'),
+                    dict(
+                        type='Posterize',
+                        magnitude_key='bits',
+                        magnitude_range=(4, 8)),
+                    dict(
+                        type='Rotate',
+                        magnitude_key='angle',
+                        magnitude_range=(0, 30)),
+                    dict(
+                        type='Sharpness',
+                        magnitude_key='magnitude',
+                        magnitude_range=(0.05, 0.95)),
+                    dict(
+                        type='Shear',
+                        magnitude_key='magnitude',
+                        magnitude_range=(0, 0.3),
+                        direction='horizontal'),
+                    dict(
+                        type='Shear',
+                        magnitude_key='magnitude',
+                        magnitude_range=(0, 0.3),
+                        direction='vertical'),
+                    dict(
+                        type='Solarize',
+                        magnitude_key='thr',
+                        magnitude_range=(256, 0)),
+                    dict(
+                        type='Translate',
+                        magnitude_key='magnitude',
+                        magnitude_range=(0, 0.3),
+                        direction='horizontal'),
+                    dict(
+                        type='Translate',
+                        magnitude_key='magnitude',
+                        magnitude_range=(0, 0.3),
+                        direction='vertical')
+                ],
+                num_policies=2,
+                total_level=10,
+                magnitude_level=7,
+                magnitude_std=0.5,
+                hparams=dict(pad_val=[114, 123, 125], interpolation='bicubic'))
+        ],
+        prefetch=True),
+    val=dict(
+        type='ClassificationDataset',
+        data_source=dict(split='test', type='CIFAR100', root='data/cifar100/'),
+        pipeline=[
+            dict(type='ToTensor'),
+            dict(
+                type='Normalize',
+                mean=[0.4914, 0.4822, 0.4465],
+                std=[0.2023, 0.1994, 0.201])
+        ],
+        prefetch=False))
+evaluation = dict(
+    initial=False,
+    interval=1,
+    imgs_per_gpu=100,
+    workers_per_gpu=4,
+    eval_param=dict(topk=(1, 5)),
+    save_best='auto')
+checkpoint_config = dict(interval=10, max_keep_ckpts=1)
+train_cfg = dict()
+test_cfg = dict()
+optimizer_config = dict(update_interval=1, grad_clip=None)
+log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
+dist_params = dict(backend='nccl')
+cudnn_benchmark = True
+log_level = 'INFO'
+load_from = None
+resume_from = None
+workflow = [('train', 1)]
+persistent_workers = True
+use_fp16 = True
+fp16 = dict(loss_scale='dynamic', type='mmcv')
+find_unused_parameters = False
+opencv_num_threads = 0
+mp_start_method = 'fork'
+model = dict(
+    type='MixUpClassification',
+    pretrained=None,
+    alpha=1.0,
+    mix_mode='vanilla',
+    mix_args=dict(
+        alignmix=dict(eps=0.1, max_iter=100),
+        attentivemix=dict(grid_size=32, top_k=None, beta=8),
+        automix=dict(mask_adjust=0, lam_margin=0),
+        fmix=dict(
+            decay_power=3, size=(32, 32), max_soft=0.0, reformulate=False),
+        gridmix=dict(
+            n_holes=(2, 6),
+            hole_aspect_ratio=1.0,
+            cut_area_ratio=(0.5, 1),
+            cut_aspect_ratio=(0.5, 2)),
+        manifoldmix=dict(layer=(0, 3)),
+        puzzlemix=dict(
+            transport=True,
+            t_batch_size=None,
+            t_size=4,
+            block_num=5,
+            beta=1.2,
+            gamma=0.5,
+            eta=0.2,
+            neigh_size=4,
+            n_labels=3,
+            t_eps=0.8),
+        resizemix=dict(
+            scope=(0.1, 0.8), use_alpha=True, interpolate_mode='bilinear'),
+        samix=dict(mask_adjust=0, lam_margin=0.08),
+        transmix=dict(mix_mode='cutmix')),
+    backbone=dict(
+        type='ConvNeXt_CIFAR',
+        arch='tiny',
+        out_indices=(3, ),
+        act_cfg=dict(type='GELU'),
+        drop_path_rate=0.3,
+        gap_before_final_norm=True),
+    head=dict(
+        type='ClsMixupHead',
+        loss=dict(
+            type='LabelSmoothLoss',
+            label_smooth_val=0.1,
+            num_classes=100,
+            mode='original',
+            loss_weight=1.0),
+        with_avg_pool=False,
+        in_channels=768,
+        num_classes=100),
+    init_cfg=[
+        dict(type='TruncNormal', layer='Linear', std=0.02, bias=0.0),
+        dict(
+            type='Constant',
+            layer=['LayerNorm', 'BatchNorm'],
+            val=1.0,
+            bias=0.0)
+    ])
+optimizer = dict(
+    type='AdamW',
+    lr=0.001,
+    weight_decay=0.05,
+    eps=1e-08,
+    betas=(0.9, 0.999),
+    paramwise_options=dict({
+        '(bn|ln|gn)(\d+)?.(weight|bias)':
+        dict(weight_decay=0.0),
+        'norm':
+        dict(weight_decay=0.0),
+        'bias':
+        dict(weight_decay=0.0),
+        'gamma':
+        dict(weight_decay=0.0)
+    }))
+update_interval = 1
+lr_config = dict(
+    policy='CosineAnnealing',
+    by_epoch=False,
+    min_lr=1e-06,
+    warmup='linear',
+    warmup_iters=20,
+    warmup_by_epoch=True,
+    warmup_ratio=1e-05)
+runner = dict(type='EpochBasedRunner', max_epochs=200)
+work_dir = 'experiments/cifar100/convnext_tiny/none/vanilla_redo/seed_42'
+auto_resume = False
+gpu_ids = range(0, 1)
+
+2026-05-09 12:14:09,612 - openmixup - INFO - Set random seed to 42, deterministic: False
+2026-05-09 12:14:09,781 - mmcv - INFO - initialize MixUpClassification with init_cfg [{'type': 'TruncNormal', 'layer': 'Linear', 'std': 0.02, 'bias': 0.0}, {'type': 'Constant', 'layer': ['LayerNorm', 'BatchNorm'], 'val': 1.0, 'bias': 0.0}]
+2026-05-09 12:14:09,781 - mmcv - INFO - initialize MixUpClassification with init_cfg [{'type': 'TruncNormal', 'layer': 'Linear', 'std': 0.02, 'bias': 0.0}, {'type': 'Constant', 'layer': ['LayerNorm', 'BatchNorm'], 'val': 1.0, 'bias': 0.0}]
+2026-05-09 12:14:09,968 - mmcv - INFO - initialize ConvNeXt_CIFAR with init_cfg [{'type': 'TruncNormal', 'layer': ['Conv2d', 'Linear'], 'std': 0.02, 'bias': 0.0}, {'type': 'Constant', 'layer': ['LayerNorm'], 'val': 1.0, 'bias': 0.0}]
+2026-05-09 12:14:09,968 - mmcv - INFO - initialize ConvNeXt_CIFAR with init_cfg [{'type': 'TruncNormal', 'layer': ['Conv2d', 'Linear'], 'std': 0.02, 'bias': 0.0}, {'type': 'Constant', 'layer': ['LayerNorm'], 'val': 1.0, 'bias': 0.0}]
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.0.0.weight - torch.Size([96, 3, 3, 3]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.0.0.weight - torch.Size([96, 3, 3, 3]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.0.0.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.0.0.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.0.1.weight - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.0.1.weight - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.0.1.bias - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.0.1.bias - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.1.0.weight - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.1.0.weight - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.1.0.bias - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.1.0.bias - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.1.1.weight - torch.Size([192, 96, 2, 2]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.1.1.weight - torch.Size([192, 96, 2, 2]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.1.1.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.1.1.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.2.0.weight - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.2.0.weight - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.2.0.bias - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.2.0.bias - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.2.1.weight - torch.Size([384, 192, 2, 2]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.2.1.weight - torch.Size([384, 192, 2, 2]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.2.1.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.2.1.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.3.0.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.3.0.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.3.0.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.3.0.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.3.1.weight - torch.Size([768, 384, 2, 2]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,170 - mmcv - INFO - 
+backbone.downsample_layers.3.1.weight - torch.Size([768, 384, 2, 2]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.downsample_layers.3.1.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.downsample_layers.3.1.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.gamma - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.gamma - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.depthwise_conv.weight - torch.Size([96, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.depthwise_conv.weight - torch.Size([96, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.depthwise_conv.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.depthwise_conv.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.norm.weight - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.norm.weight - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.norm.bias - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.norm.bias - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.pointwise_conv1.weight - torch.Size([384, 96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.pointwise_conv1.weight - torch.Size([384, 96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.pointwise_conv1.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.pointwise_conv1.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.pointwise_conv2.weight - torch.Size([96, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.pointwise_conv2.weight - torch.Size([96, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.pointwise_conv2.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.0.pointwise_conv2.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.gamma - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.gamma - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.depthwise_conv.weight - torch.Size([96, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.depthwise_conv.weight - torch.Size([96, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.depthwise_conv.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.depthwise_conv.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.norm.weight - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.norm.weight - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.norm.bias - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.norm.bias - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.pointwise_conv1.weight - torch.Size([384, 96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.pointwise_conv1.weight - torch.Size([384, 96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.pointwise_conv1.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.pointwise_conv1.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.pointwise_conv2.weight - torch.Size([96, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.pointwise_conv2.weight - torch.Size([96, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.pointwise_conv2.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.1.pointwise_conv2.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.gamma - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.gamma - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.depthwise_conv.weight - torch.Size([96, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.depthwise_conv.weight - torch.Size([96, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.depthwise_conv.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.depthwise_conv.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.norm.weight - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.norm.weight - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.norm.bias - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.norm.bias - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.pointwise_conv1.weight - torch.Size([384, 96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.pointwise_conv1.weight - torch.Size([384, 96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.pointwise_conv1.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.pointwise_conv1.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.pointwise_conv2.weight - torch.Size([96, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.pointwise_conv2.weight - torch.Size([96, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.pointwise_conv2.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.0.2.pointwise_conv2.bias - torch.Size([96]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.1.0.gamma - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,171 - mmcv - INFO - 
+backbone.stages.1.0.gamma - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.depthwise_conv.weight - torch.Size([192, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.depthwise_conv.weight - torch.Size([192, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.depthwise_conv.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.depthwise_conv.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.norm.weight - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.norm.weight - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.norm.bias - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.norm.bias - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.pointwise_conv1.weight - torch.Size([768, 192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.pointwise_conv1.weight - torch.Size([768, 192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.pointwise_conv1.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.pointwise_conv1.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.pointwise_conv2.weight - torch.Size([192, 768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.pointwise_conv2.weight - torch.Size([192, 768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.pointwise_conv2.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.0.pointwise_conv2.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.gamma - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.gamma - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.depthwise_conv.weight - torch.Size([192, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.depthwise_conv.weight - torch.Size([192, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.depthwise_conv.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.depthwise_conv.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.norm.weight - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.norm.weight - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.norm.bias - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.norm.bias - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.pointwise_conv1.weight - torch.Size([768, 192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.pointwise_conv1.weight - torch.Size([768, 192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.pointwise_conv1.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.pointwise_conv1.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.pointwise_conv2.weight - torch.Size([192, 768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.pointwise_conv2.weight - torch.Size([192, 768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.pointwise_conv2.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.1.pointwise_conv2.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.gamma - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.gamma - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.depthwise_conv.weight - torch.Size([192, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.depthwise_conv.weight - torch.Size([192, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.depthwise_conv.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.depthwise_conv.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.norm.weight - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.norm.weight - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.norm.bias - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.norm.bias - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.pointwise_conv1.weight - torch.Size([768, 192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.pointwise_conv1.weight - torch.Size([768, 192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.pointwise_conv1.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.pointwise_conv1.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.pointwise_conv2.weight - torch.Size([192, 768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.pointwise_conv2.weight - torch.Size([192, 768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.pointwise_conv2.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.1.2.pointwise_conv2.bias - torch.Size([192]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.2.0.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.2.0.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.2.0.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.2.0.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.2.0.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.2.0.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.2.0.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,172 - mmcv - INFO - 
+backbone.stages.2.0.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.0.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.0.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.0.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.0.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.0.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.0.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.0.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.0.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.0.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.0.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.1.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.2.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,173 - mmcv - INFO - 
+backbone.stages.2.3.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.3.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.3.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.3.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.3.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.4.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.5.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.6.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.7.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.7.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.7.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,174 - mmcv - INFO - 
+backbone.stages.2.7.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.7.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.gamma - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.depthwise_conv.weight - torch.Size([384, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.depthwise_conv.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.norm.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.norm.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.pointwise_conv1.weight - torch.Size([1536, 384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.pointwise_conv1.bias - torch.Size([1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.pointwise_conv2.weight - torch.Size([384, 1536]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.2.8.pointwise_conv2.bias - torch.Size([384]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.gamma - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.gamma - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.depthwise_conv.weight - torch.Size([768, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.depthwise_conv.weight - torch.Size([768, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.depthwise_conv.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.depthwise_conv.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.norm.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.norm.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.norm.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.norm.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.pointwise_conv1.weight - torch.Size([3072, 768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.pointwise_conv1.weight - torch.Size([3072, 768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.pointwise_conv1.bias - torch.Size([3072]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.pointwise_conv1.bias - torch.Size([3072]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.pointwise_conv2.weight - torch.Size([768, 3072]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.pointwise_conv2.weight - torch.Size([768, 3072]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.pointwise_conv2.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.0.pointwise_conv2.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.1.gamma - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.1.gamma - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.1.depthwise_conv.weight - torch.Size([768, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.1.depthwise_conv.weight - torch.Size([768, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.1.depthwise_conv.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.1.depthwise_conv.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.1.norm.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.1.norm.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.1.norm.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,175 - mmcv - INFO - 
+backbone.stages.3.1.norm.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.1.pointwise_conv1.weight - torch.Size([3072, 768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.1.pointwise_conv1.weight - torch.Size([3072, 768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.1.pointwise_conv1.bias - torch.Size([3072]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.1.pointwise_conv1.bias - torch.Size([3072]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.1.pointwise_conv2.weight - torch.Size([768, 3072]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.1.pointwise_conv2.weight - torch.Size([768, 3072]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.1.pointwise_conv2.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.1.pointwise_conv2.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.gamma - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.gamma - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.depthwise_conv.weight - torch.Size([768, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.depthwise_conv.weight - torch.Size([768, 1, 7, 7]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.depthwise_conv.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.depthwise_conv.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.norm.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.norm.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.norm.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.norm.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.pointwise_conv1.weight - torch.Size([3072, 768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.pointwise_conv1.weight - torch.Size([3072, 768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.pointwise_conv1.bias - torch.Size([3072]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.pointwise_conv1.bias - torch.Size([3072]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.pointwise_conv2.weight - torch.Size([768, 3072]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.pointwise_conv2.weight - torch.Size([768, 3072]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.pointwise_conv2.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.stages.3.2.pointwise_conv2.bias - torch.Size([768]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.norm3.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.norm3.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.norm3.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+backbone.norm3.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of MixUpClassification  
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+head.fc.weight - torch.Size([100, 768]): 
+Initialized by user-defined `init_weights` in ClsMixupHead  
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+head.fc.weight - torch.Size([100, 768]): 
+Initialized by user-defined `init_weights` in ClsMixupHead  
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+head.fc.bias - torch.Size([100]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+2026-05-09 12:14:10,176 - mmcv - INFO - 
+head.fc.bias - torch.Size([100]): 
+TruncNormalInit: a=-2, b=2, mean=0, std=0.02, bias=0.0 
+ 
+/hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/lib/python3.8/site-packages/mmcv/runner/hooks/optimizer.py:238: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  self.loss_scaler = GradScaler()
+2026-05-09 12:14:12,331 - openmixup - INFO - Start running, host: ma_sagnihot@hkn0407.localdomain, work_dir: /hkfs/work/workspace/scratch/ma_sagnihot-projects/openmixup/experiments/cifar100/convnext_tiny/none/vanilla_redo/seed_42
+2026-05-09 12:14:12,331 - openmixup - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) CosineAnnealingLrUpdaterHook       
+(ABOVE_NORMAL) Fp16OptimizerHook                  
+(NORMAL      ) CheckpointHook                     
+(LOW         ) ValidateHook                       
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) CosineAnnealingLrUpdaterHook       
+(NORMAL      ) DistSamplerSeedHook                
+(LOW         ) IterTimerHook                      
+(LOW         ) ValidateHook                       
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) CosineAnnealingLrUpdaterHook       
+(LOW         ) IterTimerHook                      
+(LOW         ) ValidateHook                       
+ -------------------- 
+after_train_iter:
+(ABOVE_NORMAL) Fp16OptimizerHook                  
+(NORMAL      ) CheckpointHook                     
+(LOW         ) IterTimerHook                      
+(LOW         ) ValidateHook                       
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) CheckpointHook                     
+(LOW         ) ValidateHook                       
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) DistSamplerSeedHook                
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_epoch:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_run:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+2026-05-09 12:14:12,331 - openmixup - INFO - workflow: [('train', 1)], max: 200 epochs
+2026-05-09 12:14:12,332 - openmixup - INFO - Checkpoints will be saved to /hkfs/work/workspace/scratch/ma_sagnihot-projects/openmixup/experiments/cifar100/convnext_tiny/none/vanilla_redo/seed_42 by HardDiskBackend.
+/hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/lib/python3.8/site-packages/mmcv/runner/fp16_utils.py:148: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=True):
+/hkfs/work/workspace/scratch/ma_sagnihot-projects/miniconda3/envs/openmixup/lib/python3.8/site-packages/mmcv/runner/fp16_utils.py:235: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast(enabled=False):
+2026-05-09 12:14:15,928 - mmcv - INFO - Reducer buckets have been rebuilt in this iteration.
+2026-05-09 12:14:15,928 - mmcv - INFO - Reducer buckets have been rebuilt in this iteration.
+2026-05-09 12:14:21,765 - openmixup - INFO - Epoch [1][50/500]	lr: 4.910e-06, eta: 5:14:06, time: 0.189, data_time: 0.062, memory: 5240, loss: 4.6168, acc: 1.1200
+2026-05-09 12:14:27,731 - openmixup - INFO - Epoch [1][100/500]	lr: 9.910e-06, eta: 4:16:18, time: 0.119, data_time: 0.000, memory: 5240, loss: 4.5679, acc: 2.2600
+2026-05-09 12:14:33,707 - openmixup - INFO - Epoch [1][150/500]	lr: 1.491e-05, eta: 3:57:05, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.5182, acc: 3.2400
+2026-05-09 12:14:39,690 - openmixup - INFO - Epoch [1][200/500]	lr: 1.991e-05, eta: 3:47:28, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.4849, acc: 3.2600
+2026-05-09 12:14:45,674 - openmixup - INFO - Epoch [1][250/500]	lr: 2.491e-05, eta: 3:41:41, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.4690, acc: 3.7800
+2026-05-09 12:14:51,663 - openmixup - INFO - Epoch [1][300/500]	lr: 2.991e-05, eta: 3:37:49, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.4454, acc: 4.1200
+2026-05-09 12:14:57,650 - openmixup - INFO - Epoch [1][350/500]	lr: 3.491e-05, eta: 3:35:01, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.4273, acc: 4.2000
+2026-05-09 12:15:03,638 - openmixup - INFO - Epoch [1][400/500]	lr: 3.991e-05, eta: 3:32:53, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.4018, acc: 4.8600
+2026-05-09 12:15:09,629 - openmixup - INFO - Epoch [1][450/500]	lr: 4.491e-05, eta: 3:31:13, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.3721, acc: 5.0400
+2026-05-09 12:15:15,628 - openmixup - INFO - Exp name: convnext_t_vanilla_bs100_ep200.py
+2026-05-09 12:15:15,628 - openmixup - INFO - Epoch [1][500/500]	lr: 4.991e-05, eta: 3:29:54, time: 0.120, data_time: 0.001, memory: 5240, loss: 4.3611, acc: 5.3400
+2026-05-09 12:15:17,631 - openmixup - INFO - head0_top1: 6.820
+2026-05-09 12:15:17,631 - openmixup - INFO - head0_top5: 23.910
+2026-05-09 12:15:18,065 - openmixup - INFO - Now best checkpoint is saved as best_head0_top1_epoch_1.pth.
+2026-05-09 12:15:18,065 - openmixup - INFO - Best head0_top1 is 6.8200 at 1 epoch.
+2026-05-09 12:15:18,066 - openmixup - INFO - Exp name: convnext_t_vanilla_bs100_ep200.py
+2026-05-09 12:15:18,066 - openmixup - INFO - Epoch(val) [1][100]	head0_top1: 6.8200, head0_top5: 23.9100
+2026-05-09 12:15:26,287 - openmixup - INFO - Epoch [2][50/500]	lr: 5.491e-05, eta: 3:35:30, time: 0.164, data_time: 0.044, memory: 5240, loss: 4.3435, acc: 4.6800
+2026-05-09 12:15:32,278 - openmixup - INFO - Epoch [2][100/500]	lr: 5.990e-05, eta: 3:33:59, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.3277, acc: 6.0600
+2026-05-09 12:15:38,270 - openmixup - INFO - Epoch [2][150/500]	lr: 6.490e-05, eta: 3:32:41, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.3041, acc: 5.9600
+2026-05-09 12:15:44,264 - openmixup - INFO - Epoch [2][200/500]	lr: 6.990e-05, eta: 3:31:34, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.2908, acc: 6.0200
+2026-05-09 12:15:50,254 - openmixup - INFO - Epoch [2][250/500]	lr: 7.490e-05, eta: 3:30:34, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.2767, acc: 6.6400
+2026-05-09 12:15:56,245 - openmixup - INFO - Epoch [2][300/500]	lr: 7.990e-05, eta: 3:29:41, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.2924, acc: 6.8000
+2026-05-09 12:16:02,239 - openmixup - INFO - Epoch [2][350/500]	lr: 8.489e-05, eta: 3:28:54, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.2591, acc: 6.5400
+2026-05-09 12:16:08,239 - openmixup - INFO - Epoch [2][400/500]	lr: 8.989e-05, eta: 3:28:13, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.2505, acc: 6.7600
+2026-05-09 12:16:14,236 - openmixup - INFO - Epoch [2][450/500]	lr: 9.489e-05, eta: 3:27:34, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.2181, acc: 7.6600
+2026-05-09 12:16:20,238 - openmixup - INFO - Exp name: convnext_t_vanilla_bs100_ep200.py
+2026-05-09 12:16:20,238 - openmixup - INFO - Epoch [2][500/500]	lr: 9.988e-05, eta: 3:27:00, time: 0.120, data_time: 0.001, memory: 5240, loss: 4.2247, acc: 7.2000
+2026-05-09 12:16:22,006 - openmixup - INFO - head0_top1: 10.730
+2026-05-09 12:16:22,006 - openmixup - INFO - head0_top5: 31.200
+2026-05-09 12:16:22,007 - openmixup - INFO - The previous best checkpoint /hkfs/work/workspace/scratch/ma_sagnihot-projects/openmixup/experiments/cifar100/convnext_tiny/none/vanilla_redo/seed_42/best_head0_top1_epoch_1.pth was removed
+2026-05-09 12:16:22,359 - openmixup - INFO - Now best checkpoint is saved as best_head0_top1_epoch_2.pth.
+2026-05-09 12:16:22,359 - openmixup - INFO - Best head0_top1 is 10.7300 at 2 epoch.
+2026-05-09 12:16:22,359 - openmixup - INFO - Exp name: convnext_t_vanilla_bs100_ep200.py
+2026-05-09 12:16:22,360 - openmixup - INFO - Epoch(val) [2][100]	head0_top1: 10.7300, head0_top5: 31.2000
+2026-05-09 12:16:30,554 - openmixup - INFO - Epoch [3][50/500]	lr: 1.049e-04, eta: 3:29:55, time: 0.164, data_time: 0.044, memory: 5240, loss: 4.1878, acc: 7.8600
+2026-05-09 12:16:36,546 - openmixup - INFO - Epoch [3][100/500]	lr: 1.099e-04, eta: 3:29:15, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.1503, acc: 8.5000
+2026-05-09 12:16:42,540 - openmixup - INFO - Epoch [3][150/500]	lr: 1.149e-04, eta: 3:28:38, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.1642, acc: 8.8400
+2026-05-09 12:16:48,531 - openmixup - INFO - Epoch [3][200/500]	lr: 1.199e-04, eta: 3:28:03, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.1669, acc: 8.7400
+2026-05-09 12:16:54,521 - openmixup - INFO - Epoch [3][250/500]	lr: 1.249e-04, eta: 3:27:31, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.1518, acc: 8.5400
+2026-05-09 12:17:00,513 - openmixup - INFO - Epoch [3][300/500]	lr: 1.299e-04, eta: 3:27:01, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.1137, acc: 9.6200
+2026-05-09 12:17:06,506 - openmixup - INFO - Epoch [3][350/500]	lr: 1.348e-04, eta: 3:26:33, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.0832, acc: 9.8400
+2026-05-09 12:17:12,498 - openmixup - INFO - Epoch [3][400/500]	lr: 1.398e-04, eta: 3:26:06, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.0754, acc: 9.9000
+2026-05-09 12:17:18,493 - openmixup - INFO - Epoch [3][450/500]	lr: 1.448e-04, eta: 3:25:41, time: 0.120, data_time: 0.000, memory: 5240, loss: 4.0738, acc: 10.4600
+2026-05-09 12:17:24,497 - openmixup - INFO - Exp name: convnext_t_vanilla_bs100_ep200.py
+2026-05-09 12:17:24,498 - openmixup - INFO - Epoch [3][500/500]	lr: 1.498e-04, eta: 3:25:18, time: 0.120, data_time: 0.001, memory: 5240, loss: 4.0704, acc: 10.2600
+2026-05-09 12:17:26,271 - openmixup - INFO - head0_top1: 13.230
+2026-05-09 12:17:26,271 - openmixup - INFO - head0_top5: 38.580
+2026-05-09 12:17:26,272 - openmixup - INFO - The previous best checkpoint /hkfs/work/workspace/scratch/ma_sagnihot-projects/openmixup/experiments/cifar100/convnext_tiny/none/vanilla_redo/seed_42/best_head0_top1_epoch_2.pth was removed
+2026-05-09 12:17:26,624 - openmixup - INFO - Now best checkpoint is saved as best_head0_top1_epoch_3.pth.
+2026-05-09 12:17:26,624 - openmixup - INFO - Best head0_top1 is 13.2300 at 3 epoch.
+2026-05-09 12:17:26,625 - openmixup - INFO - Exp name: convnext_t_vanilla_bs100_ep200.py
+2026-05-09 12:17:26,625 - openmixup - INFO - Epoch(val) [3][100]	head0_top1: 13.2300, head0_top5: 38.5800
+2026-05-09 12:17:34,862 - openmixup - INFO - Epoch [4][50/500]	lr: 1.548e-04, eta: 3:27:18, time: 0.165, data_time: 0.045, memory: 5240, loss: 4.0466, acc: 10.9600
