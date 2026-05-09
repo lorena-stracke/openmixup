@@ -13,7 +13,8 @@ import torch
 from PIL import Image
 from mmcv import DictAction
 from mmcv.parallel import MMDataParallel, MMDistributedDataParallel
-from mmcv.runner import get_dist_info, init_dist, load_checkpoint
+from mmcv.runner import (CheckpointLoader, get_dist_info, init_dist,
+                         load_checkpoint)
 
 from openmixup.datasets import build_dataloader, build_dataset
 from openmixup.datasets.registry import PIPELINES
@@ -94,6 +95,12 @@ def parse_args():
     parser.add_argument('--sparse-baseline', action='store_true', help='Whether to test the baseline with sparsity (without any blur preprocessing)')
     parser.add_argument('--use-reflect-padding-for-blurring', action='store_true', help='Whether to use reflect padding for blurring instead of zero padding (default: False)')
     parser.add_argument(
+        '--ignore-checkpoint-preprocessing',
+        action='store_true',
+        help='Do not reuse BlurPreprocessing settings stored in the checkpoint '
+        'metadata. Use this only to intentionally test without the training '
+        'preprocessing.')
+    parser.add_argument(
         '--eval-corruptions',
         action='store_true',
         help='Evaluate clean CIFAR plus common imagecorruptions corruptions.')
@@ -171,6 +178,118 @@ def get_common_corruption_names():
             'Corruption evaluation requires imagecorruptions. Install it with '
             '`pip install imagecorruptions`.') from exc
     return list(get_corruption_names('common'))
+
+
+def build_preprocessing_cfg(args, work_dir, training):
+    return dict(
+        type='BlurPreprocessing',
+        blur_bool=args.blur,
+        blur_depth=args.blur_depth,
+        single_color=args.single_color,
+        color_opponency=args.color_opponency,
+        channels=args.channels,
+        path=work_dir,
+        training=training,
+        black_white=args.black_white,
+        normalize=args.normalize,
+        sparsity_threshold=args.sparsity_threshold,
+        sparsity_type=args.sparsity_type,
+        change_range=args.change_range,
+        sparse_baseline=args.sparse_baseline,
+        use_reflect_padding_for_blurring=args.use_reflect_padding_for_blurring)
+
+
+def runtime_preprocessing_cfg(preprocessing_cfg, work_dir, training):
+    preprocessing_cfg = copy.deepcopy(preprocessing_cfg)
+    preprocessing_cfg['path'] = work_dir
+    preprocessing_cfg['training'] = training
+    return preprocessing_cfg
+
+
+def get_checkpoint_preprocessing_cfg(checkpoint_path, logger=None):
+    try:
+        checkpoint = CheckpointLoader.load_checkpoint(
+            checkpoint_path, map_location='cpu')
+    except Exception as exc:
+        if logger is not None:
+            logger.warning(
+                'Could not inspect checkpoint metadata for preprocessing: %s',
+                exc)
+        return None
+
+    meta = checkpoint.get('meta', {})
+    config_text = meta.get('config') if isinstance(meta, dict) else None
+    if not config_text:
+        return None
+
+    try:
+        checkpoint_cfg = mmcv.Config.fromstring(config_text, '.py')
+    except Exception as exc:
+        if logger is not None:
+            logger.warning(
+                'Could not parse checkpoint config metadata for preprocessing: %s',
+                exc)
+        return None
+
+    return copy.deepcopy(
+        checkpoint_cfg.get('model', {}).get('backbone', {}).get(
+            'preprocessing', None))
+
+
+def choose_preprocessing_cfg(args, cfg, logger):
+    cli_preprocessing = build_preprocessing_cfg(
+        args, cfg.work_dir, training=False)
+    if args.ignore_checkpoint_preprocessing:
+        logger.info(
+            'Using CLI/default preprocessing settings; checkpoint metadata '
+            'preprocessing is ignored.')
+        return cli_preprocessing
+
+    checkpoint_preprocessing = get_checkpoint_preprocessing_cfg(
+        args.checkpoint, logger=logger)
+    if (checkpoint_preprocessing is not None
+            and checkpoint_preprocessing.get('blur_bool', False)):
+        logger.info(
+            'Using BlurPreprocessing settings stored in checkpoint metadata. '
+            'Pass --ignore-checkpoint-preprocessing to intentionally test '
+            'with CLI/default preprocessing instead.')
+        return runtime_preprocessing_cfg(
+            checkpoint_preprocessing, cfg.work_dir, training=False)
+
+    if checkpoint_preprocessing is None and not args.blur:
+        logger.info(
+            'No active BlurPreprocessing found in checkpoint metadata or CLI; '
+            'evaluation will use identity preprocessing.')
+    return cli_preprocessing
+
+
+def set_model_preprocessing(cfg, preprocessing_cfg):
+    if 'backbone' not in cfg.model:
+        raise KeyError('cfg.model.backbone is required for BlurPreprocessing.')
+    cfg.model.backbone['preprocessing'] = preprocessing_cfg
+
+
+def preprocessing_flags_enabled(args):
+    return any([
+        args.blur,
+        args.single_color,
+        args.color_opponency,
+        args.black_white,
+        args.normalize,
+        args.change_range,
+        args.sparse_baseline,
+        args.use_reflect_padding_for_blurring,
+        args.sparsity_threshold > 0.0,
+    ])
+
+
+def check_model_preprocessing(cfg, args, logger):
+    preprocessing = cfg.model.backbone.get('preprocessing', None)
+    if preprocessing_flags_enabled(args) and preprocessing is None:
+        logger.warning(
+            'Preprocessing CLI flags were passed, but no preprocessing config '
+            'is attached to cfg.model.backbone before model construction.')
+    return preprocessing
 
 
 def insert_corruption_transform(data_cfg, corruption_name, severity, insert_index):
@@ -435,30 +554,13 @@ def main():
     log_file = osp.join(cfg.work_dir, 'test_{}.log'.format(timestamp))
     logger = get_root_logger(log_file=log_file, log_level=cfg.log_level)
 
-    preprocessing_dict = dict(
-        type='BlurPreprocessing',
-        blur_bool=args.blur,
-        blur_depth=args.blur_depth,
-        single_color=args.single_color,
-        color_opponency=args.color_opponency,
-        channels=args.channels,
-        path=args.work_dir,
-        training=False,
-        black_white=args.black_white,
-        normalize=args.normalize,
-        sparsity_threshold=args.sparsity_threshold,
-        sparsity_type = args.sparsity_type,
-        change_range=args.change_range,
-        sparse_baseline = args.sparse_baseline,
-        use_reflect_padding_for_blurring = args.use_reflect_padding_for_blurring
-    )
-
-    if 'preprocessing' not in cfg.model:
-        cfg.model.backbone['preprocessing'] = preprocessing_dict
-    else:
-        cfg.model.backbone['preprocessing'].update(preprocessing_dict)
+    preprocessing_dict = choose_preprocessing_cfg(args, cfg, logger)
+    set_model_preprocessing(cfg, preprocessing_dict)
+    logger.info('Effective preprocessing config: %s', preprocessing_dict)
 
     # build the model and load checkpoint
+    preprocessing = check_model_preprocessing(cfg, args, logger)
+    logger.info('Test-time backbone preprocessing config: %s', preprocessing)
     model = build_model(cfg.model)
     load_checkpoint(model, args.checkpoint, map_location='cpu')
 

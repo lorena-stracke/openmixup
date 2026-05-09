@@ -103,6 +103,31 @@ def parse_args():
     return args
 
 
+def build_preprocessing_cfg(args, work_dir, training):
+    return dict(
+        type='BlurPreprocessing',
+        blur_bool=args.blur,
+        blur_depth=args.blur_depth,
+        single_color=args.single_color,
+        color_opponency=args.color_opponency,
+        channels=args.channels,
+        path=work_dir,
+        training=training,
+        black_white=args.black_white,
+        normalize=args.normalize,
+        sparsity_threshold=args.sparsity_threshold,
+        sparsity_type=args.sparsity_type,
+        change_range=args.change_range,
+        sparse_baseline=args.sparse_baseline,
+        use_reflect_padding_for_blurring=args.use_reflect_padding_for_blurring)
+
+
+def set_model_preprocessing(cfg, preprocessing_cfg):
+    if 'backbone' not in cfg.model:
+        raise KeyError('cfg.model.backbone is required for BlurPreprocessing.')
+    cfg.model.backbone['preprocessing'] = preprocessing_cfg
+
+
 def main():
     args = parse_args()
 
@@ -141,6 +166,9 @@ def main():
                       'in `gpu_ids` now.')
     if args.gpus is None and args.gpu_ids is None:
         cfg.gpu_ids = [args.gpu_id]
+
+    set_model_preprocessing(
+        cfg, build_preprocessing_cfg(args, cfg.work_dir, training=True))
 
     # check memcached package exists
     if importlib.util.find_spec('mc') is None:
@@ -190,30 +218,6 @@ def main():
     cfg.seed = seed
     meta['seed'] = seed
     meta['exp_name'] = osp.basename(args.config)
-
-    preprocessing_dict = dict(
-        type='BlurPreprocessing',
-        blur_bool=args.blur,
-        blur_depth=args.blur_depth,
-        single_color=args.single_color,
-        color_opponency=args.color_opponency,
-        channels=args.channels,
-        path=args.work_dir,
-        training=True,
-        black_white=args.black_white,
-        normalize=args.normalize,
-        sparsity_threshold=args.sparsity_threshold,
-        sparsity_type = args.sparsity_type,
-        change_range=args.change_range,
-        sparse_baseline = args.sparse_baseline,
-        use_reflect_padding_for_blurring = args.use_reflect_padding_for_blurring
-    )
-
-    if 'preprocessing' not in cfg.model:
-        cfg.model.backbone['preprocessing'] = preprocessing_dict
-    else:
-        cfg.model.backbone['preprocessing'].update(preprocessing_dict)
-
 
     # build the model and load pretrained or checkpoint
     if args.pretrained is not None:
