@@ -5,6 +5,7 @@ set -x
 CFG=$1
 GPUS=$2
 CHECKPOINT=$3
+shift 3
 NNODES=${NNODES:-1}
 NODE_RANK=${NODE_RANK:-0}
 PORT=${PORT:-29500}
@@ -22,4 +23,5 @@ python -m torch.distributed.launch \
     tools/test.py \
     $CFG \
     $CHECKPOINT \
-    --work_dir $WORK_DIR --launcher="pytorch"
+    --work_dir $WORK_DIR --launcher="pytorch" \
+    "$@"
